@@ -31,3 +31,12 @@
 # Debug files
 *.dSYM/
 *.su
+
+# Vcode
+.vscode/
+
+# binary files
+arrays
+pointers
+func_pointers
+strings
