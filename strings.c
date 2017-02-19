@@ -1,11 +1,7 @@
 #include "stdio.h"
 #include "string.h"
 #include <stdlib.h>
-
-// simple string wrapper
-typedef struct {
-    char* value;
-} String_t;
+#include "strings.h"
 
 String_t concat(String_t str_1, String_t str_2) {
     // It concatenates two strings and returns the combined one string.
@@ -44,29 +40,25 @@ int find(String_t str, const char to_find) {
     return -1;
 }
 
-int main() {
-    String_t string1, string2;
-    string1.value = "string_1";
-    string2.value = "string_2";
-    printf("string1.value=%s\n", string1.value);
-    printf("string2.value=%s\n", string2.value);
+Vector_t* find_all(String_t str, const char to_find) {
+    // Find all occurrences in string of a given character
+    // and return their positions
+    Vector_t *res_vector = malloc(sizeof(Vector_t));
+    vector_init(res_vector);
 
-    String_t string3 = concat(string1, string2);    
-    printf("concat(string1, string2)=%s\n", string3.value);
-    
-    int string3_len = length(string3);
-    printf("length(string3)=%d\n", string3_len);
-    printf("string3.value=%s\n", string3.value);
+    int index = 0;
+    while (*str.value != '\0') {
+        if (*str.value == to_find) {
+           vector_append(res_vector, index);
+        }
+        index++; str.value++;
+    }
 
-    printf("find(string3, 't')=%d\n", find(string3, 't'));
-    printf("find(string3, '2')=%d\n", find(string3, '2'));
-    printf("find(string3, '3')=%d\n", find(string3, '3'));
+    return res_vector;
+}
 
-    // TODO: find all occurrences in string of a given character
-    // TODO: replace character
-    // TODO: reverse a string
-    // TODO: compare strings
-    // TODO: get subset of a string
-    // TODO: [int, float] to string
-    return 0;
-};
+// TODO: replace character
+// TODO: reverse a string
+// TODO: compare strings
+// TODO: get subset of a string
+// TODO: [int, float] to string
